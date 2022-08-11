@@ -1,12 +1,6 @@
 # videojs-itt-chat
 
-Inventos test task: videojs chat plugin
-
-## Installation
-
-```sh
-npm install --save videojs-itt-chat
-```
+Inventos test task: videojs chat plugin.
 
 ## Usage
 
@@ -28,7 +22,7 @@ This is the simplest case. Get the script in whatever way you prefer and include
 
 ### Browserify/CommonJS
 
-When using with Browserify, install videojs-itt-chat via npm and `require` the plugin as you would any other module.
+When using with Browserify, `require` the plugin as you would any other module.
 
 ```js
 var videojs = require('video.js');
