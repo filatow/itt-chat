@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>videojs-itt-chat Demo</title>
+    <link rel="icon" href="favicon.svg" />
+    <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet" />
+    <link href="dist/videojs-itt-chat.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .video-js {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <video
+        id="videojs-itt-chat-player"
+        class="video-js vjs-default-skin vjs-big-play-centered"
+        poster="assets/sintel-poster.jpg"
+      >
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" type="video/mp4" />
+      </video>
+    </main>
+
+    <script src="node_modules/video.js/dist/video.js"></script>
+    <script src="dist/videojs-itt-chat.js"></script>
+    <script>
+      (function (window, videojs) {
+        var examplePlayer = (window.examplePlayer = videojs("videojs-itt-chat-player", {
+          fluid: true,
+          controls: true,
+          autoplay: false,
+          loop: true,
+          preload: 'auto',
+          inactivityTimeout: 3000,
+        }));
+        var ittChat = (window.ittChat = examplePlayer.ittChat({
+          offsetY: 10,
+          inputFontSizeRatio: 0.8,
+          optWidth: 555
+        }));
+      })(window, window.videojs);
+    </script>
+  </body>
+</html>

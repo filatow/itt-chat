@@ -1,0 +1,188 @@
+/**
+ * scss for videojs-itt-chat
+ */
+
+:root {
+  --base-font-size: 20px;
+  --input-font-size-ratio: 1;
+  --control-bar-height: 30px;
+  --offset-y: 0;
+  --min-width: 300px;
+  --opt-width: 600px;
+  --max-width: 45%;
+}
+
+.video-js {
+
+  &.vjs-videojs-itt-chat {
+    position: relative;
+
+    & .vjs-chatbox {
+      position: absolute;
+      z-index: 2;
+      top: 0.5em;
+      left: 0.5em;
+      min-width: var(--min-width);
+      width: var(--opt-width);
+      max-width: var(--max-width);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      /*
+        1em : basic vertical indents (0.5em x2);
+        var(--offset-y) * 1px : custom optional offset
+      */
+      height: calc(100% - var(--control-bar-height) - 1em - var(--offset-y) * 1px);
+      opacity: 1;
+      transition: opacity 0.1s ease;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: var(--base-font-size);
+    }
+
+    &.vjs-user-inactive .vjs-chatbox {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    &.vjs-paused .vjs-chatbox {
+      opacity: 1;
+    }
+
+    & .vjs-chatbox .vjs-chatbox-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /*
+        0.6em : vjs-chatbox-list {margin-bottom};
+        3em : vjs-chatbox-new height;
+      */
+      max-height: calc(100% - 0.6em - 3em);
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding: 0;
+      margin-bottom: 0.6em;
+      list-style: none;
+      overflow: scroll;
+    }
+
+    & .vjs-chatbox-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    & .vjs-chatbox-message {
+      border-radius: 0.3em;
+      background-color: rgba(0, 0, 0, 0.17);
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+      margin-right: 0;
+      margin-left: 0;
+      margin-top: 0;
+      margin-bottom: 0.4em;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.25;
+      font-weight: normal;
+    }
+
+    & .vjs-chatbox-message:last-child {
+      margin-bottom: 0;
+    }
+
+    & .vjs-chatbox-new {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 3em;
+      padding: 0.4em;
+      background-color: transparent;
+      border-radius: 0.3em;
+      border: 1px solid rgba(60, 60, 60, 0.7);
+    }
+
+    & .vjs-chatbox-new:hover {
+      border: 1px solid rgba(90, 90, 90, 0.8);
+    }
+
+    & .vjs-chatbox-new-input {
+      display: block;
+      /* var(--base-font-size) * 3 : send-button width */
+      width: calc(100% - var(--base-font-size) * 3);
+      height: calc(var(--base-font-size) * 2.2);
+      flex-grow: 1;
+      padding-left: calc(var(--base-font-size) * 0.4);
+      padding-right: calc(var(--base-font-size) * 0.4);
+      border: none;
+      background-color: rgba(60, 60, 60, 0.7);
+      color:rgba(255, 255, 255, 0.75);
+      font-family: inherit;
+      font-size: calc(var(--base-font-size) * var(--input-font-size-ratio));
+      line-height: 1;
+    }
+
+    & .vjs-chatbox-new-input::placeholder {
+      color:rgba(255, 255, 255, 0.35)
+    }
+
+    & .vjs-chatbox-new:focus-within .vjs-chatbox-new-input {
+      color:rgba(0, 0, 0, 1);
+      background-color: rgba(255, 255, 255, 0.95);
+      opacity: 0.75;
+    }
+
+    & .vjs-chatbox-new:focus-within .vjs-chatbox-new-input::placeholder {
+      color:rgba(0, 0, 0, 0.45);
+    }
+
+    & .vjs-chatbox-new .vjs-chatbox-new-input:focus {
+      opacity: 1;
+    }
+
+    & .vjs-chatbox-new-input:focus::placeholder {
+      color:rgba(0, 0, 0, 0.35)
+    }
+
+    & .vjs-chatbox-new .vjs-chatbox-new-send {
+      flex-shrink: 0;
+      display: grid;
+      grid-template: 1fr / 1fr;
+      width: 3em;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    & .vjs-chatbox-new .vjs-chatbox-new-send::after {
+      grid-area: 1 / 1 / 2 / 2;
+      align-self: center;
+      content: '';
+      display: block;
+      padding: 0;
+      width: 100%;
+      height: 68%;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cg%3E%3Cpath d='M10,991.1l980-493.2L10,8.9l101.1,415.7l532.7,73.4l-532.7,70.5L10,991.1z' fill='%23ffffff'/%3E%3C/g%3E%3C/svg%3E");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.25;
+      transition: opacity 0.3s ease;
+    }
+
+    & .vjs-chatbox-new .vjs-chatbox-new-send:hover::after {
+      opacity: 0.75;
+    }
+
+    & .vjs-chatbox-new-input:focus + .vjs-chatbox-new-send::after {
+      opacity: 0.75;
+    }
+
+    & .vjs-chatbox-new-input:focus + .vjs-chatbox-new-send:hover::after {
+      opacity: 0.95;
+    }
+
+    & .vjs-chatbox-new-send:focus::after,
+    & .vjs-chatbox-new-send:active::after {
+      opacity: 0.95;
+    }
+  }
+}
